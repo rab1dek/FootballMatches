@@ -2,6 +2,8 @@ package com.example.FootballMatches.controllers;
 
 import com.example.FootballMatches.entities.Match;
 import com.example.FootballMatches.services.MatchService;
+import com.example.FootballMatches.services.RefereeService;
+import com.example.FootballMatches.services.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -13,6 +15,10 @@ import java.util.List;
 public class MatchController {
     @Autowired
     MatchService matchService;
+    @Autowired
+    RefereeService refereeService;
+    @Autowired
+    TeamService teamService;
 
     @GetMapping
     public List<Match> getMatches() {
@@ -22,14 +28,19 @@ public class MatchController {
     public Match getMatchById(@PathVariable("id") Long id) {
         return matchService.findByMatchId(id);
     }
-    @PostMapping(consumes = "application/json")
+
+    @PostMapping(path = "/{referee}/{team}", consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public Match create(@RequestBody Match match) {
+    public Match create(@RequestBody Match match, @PathVariable("referee") Long referee, @PathVariable("team") Long team) {
+        match.setReferee(refereeService.findByRefId((referee)));
+        match.setTeam(teamService.findByTeamid(team));
         return matchService.save(match);
     }
-    @PutMapping(consumes = "application/json")
+    @PutMapping(path = "/{referee}/{team}", consumes = "application/json")
     @ResponseStatus(HttpStatus.OK)
-    public Match update(@RequestBody Match match) {
+    public Match update(@RequestBody Match match, @PathVariable("referee") Long referee, @PathVariable("team") Long team) {
+        match.setReferee(refereeService.findByRefId((referee)));
+        match.setTeam(teamService.findByTeamid(team));
         return matchService.save(match);
     }
     @DeleteMapping("/{id}")
