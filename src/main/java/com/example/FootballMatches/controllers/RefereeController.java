@@ -19,7 +19,7 @@ public class RefereeController {
     public List<Referee> getReferees() {
         return refService.getAll();
     }
-    @GetMapping("/{id")
+    @GetMapping("/{id}")
     public Referee getRefereeById(@PathVariable("id") Long id) {
         return refService.findByRefId(id);
     }

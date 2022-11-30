@@ -18,7 +18,7 @@ public class MatchController {
     public List<Match> getMatches() {
         return matchService.getAll();
     }
-    @GetMapping("/{id")
+    @GetMapping("/{id}")
     public Match getMatchById(@PathVariable("id") Long id) {
         return matchService.findByMatchId(id);
     }

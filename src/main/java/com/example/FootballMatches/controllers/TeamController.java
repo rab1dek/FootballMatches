@@ -18,7 +18,7 @@ public class TeamController {
     public List<Team> getTeams() {
         return teamService.getAll();
     }
-    @GetMapping("/{id")
+    @GetMapping("/{id}")
     public Team getTeamById(@PathVariable("id") Long id) {
         return teamService.findByTeamid(id);
     }

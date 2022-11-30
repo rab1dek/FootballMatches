@@ -25,14 +25,14 @@ public class Match implements Serializable {
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "team_Id")
+    @JoinColumn(name = "team_ID")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Team team;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "referee_Id")
+    @JoinColumn(name = "referee_ID")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Referee ref;
+    private Referee referee;
 
 }
