@@ -1,6 +1,6 @@
 package com.example.FootballMatches.integrationTests;
 
-import com.example.FootballMatches.FootballMatchesApplication;
+import com.example.FootballMatches.*;
 import com.example.FootballMatches.entities.Team;
 import com.example.FootballMatches.repositories.TeamRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
