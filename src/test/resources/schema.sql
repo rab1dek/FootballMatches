@@ -6,6 +6,7 @@ CREATE TABLE  IF NOT EXISTS team
     country     VARCHAR(255),
     capitan     VARCHAR(255),
     coach       VARCHAR(255),
+    players     VARCHAR(255),
     CONSTRAINT pk_team PRIMARY KEY (teamid)
     );
 
