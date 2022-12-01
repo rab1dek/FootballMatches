@@ -24,7 +24,8 @@ CREATE TABLE  IF NOT EXISTS footballmatch
 (
     match_id       BIGINT AUTO_INCREMENT NOT NULL,
     match_date    date,
-    match_stadium VARCHAR(255),
+    match_time    VARCHAR(255),
+    match_league  VARCHAR(255),
     referee_id    BIGINT,
     team_id       BIGINT,
     CONSTRAINT pk_match PRIMARY KEY (match_id)
