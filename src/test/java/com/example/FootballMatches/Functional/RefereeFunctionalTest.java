@@ -14,7 +14,6 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 
-
 import java.io.IOException;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -23,9 +22,6 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-
-import java.io.IOException;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = FootballMatchesApplication.class)
 @AutoConfigureMockMvc
@@ -76,8 +72,7 @@ public class RefereeFunctionalTest {
                         .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.name", is(referee1.get("name"))))
                 .andExpect(jsonPath("$.surname", is(referee1.get("surname"))))
-                .andExpect(jsonPath("$.league", is(referee1.get("league"))))
-                .andExpect(jsonPath("$.country", is(referee1.get("country"))));
+                .andExpect(jsonPath("$.league", is(referee1.get("league"))));
     }
 
     @Test
@@ -87,7 +82,7 @@ public class RefereeFunctionalTest {
 
         mvc.perform(post("/app-api/referees").contentType(MediaType.APPLICATION_JSON)
                 .content(referee1.toString()));
-        mvc.perform(put("/app-api/referees/{id}", referee1.get("refereeId"))
+        mvc.perform(get("/app-api/referees/{id}", referee1.get("refereeId"))
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(referee1.toString()).contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
