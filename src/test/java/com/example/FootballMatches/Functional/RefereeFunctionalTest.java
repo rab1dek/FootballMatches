@@ -85,8 +85,10 @@ public class RefereeFunctionalTest {
         referee1Init(referee1);
         refereeUpdate(updatedReferee);
 
-        mvc.perform(post("/app-api/referees").contentType(MediaType.APPLICATION_JSON).content(referee1.toString()));
-        mvc.perform(patch("/app-api/referees/{id}", referee1.get("refereeId")).contentType(MediaType.APPLICATION_JSON)
+        mvc.perform(post("/app-api/referees").contentType(MediaType.APPLICATION_JSON)
+                .content(referee1.toString()));
+        mvc.perform(put("/app-api/referees/{id}", referee1.get("refereeId"))
+                        .contentType(MediaType.APPLICATION_JSON)
                         .content(referee1.toString()).contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -94,8 +96,7 @@ public class RefereeFunctionalTest {
                         .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.name", is(referee1.get("name"))))
                 .andExpect(jsonPath("$.surname", is(referee1.get("surname"))))
-                .andExpect(jsonPath("$.league", is(referee1.get("league"))))
-                .andExpect(jsonPath("$.country", is(referee1.get("country"))));
+                .andExpect(jsonPath("$.league", is(referee1.get("league"))));
     }
 
     @Test
@@ -110,7 +111,7 @@ public class RefereeFunctionalTest {
     }
 
     @Test
-    public void givenDoctors_whenLoadReferees_thenStatus200() throws Exception {
+    public void givenReferee_whenLoadReferees_thenStatus200() throws Exception {
         referee1Init(referee1);
         referee2Init(referee2);
         mvc.perform(post("/app-api/referees").contentType(MediaType.APPLICATION_JSON)
@@ -129,7 +130,7 @@ public class RefereeFunctionalTest {
     }
 
     @Test
-    public void givenDoctor_whenLoadRefereeById_thenStatus200() throws Exception {
+    public void givenReferee_whenLoadRefereeById_thenStatus200() throws Exception {
         referee1Init(referee1);
         mvc.perform(post("/app-api/referees").contentType(MediaType.APPLICATION_JSON)
                 .content(referee1.toString()));
