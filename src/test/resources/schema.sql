@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS referee
     CONSTRAINT pk_referee PRIMARY KEY (refereeid)
     );
 
-CREATE TABLE  IF NOT EXISTS match
+CREATE TABLE  IF NOT EXISTS footballmatch
 (
     matchid       BIGINT AUTO_INCREMENT NOT NULL,
     match_date    date,
