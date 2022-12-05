@@ -50,17 +50,19 @@ public class MatchUnitTest {
     }
 
     @Test
-    public void givenVisit_whenValidateType_ReturnChangedVisit() {
+    public void changeGivenMatchData() {
         Match newMatch = new Match();
         newMatch.setLeague("World Cup");
         newMatch.setMatchDate(new Date(2022, 2, 10));
+        newMatch.setMatchTime("21:00");
         Match match = new Match();
 
         MatchUtils.validateMatch(newMatch, match);
 
         assertAll("Transaction quota",
                 () ->  assertEquals(match.getLeague(),"World Cup"),
-                () -> assertEquals(match.getMatchDate(),new Date(2022, 2, 10))
+                () -> assertEquals(match.getMatchDate(),new Date(2022, 2, 10)),
+                () ->  assertEquals(match.getMatchTime(),"21:00")
         );
     }
 
