@@ -37,16 +37,14 @@ public class MatchFunctionalTest {
 
     public void matchInit(JSONObject match) throws Exception{
         match.put("matchId", 1);
-        //match.put("matchDate", new Date(2022, 1, 2));
         match.put("matchDate", "2022-01-02");
         match.put("matchTime", "14:30");
         match.put("league", "Premiere League");
     }
 
 
-
     @Test
-    public void getMatchesIfEmpty() throws Exception {
+    public void getMatchesIfEmptyTest() throws Exception {
         mvc.perform(get("/app-api/matches")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
@@ -57,7 +55,7 @@ public class MatchFunctionalTest {
     }
 
     @Test
-    public void getMatchById() throws Exception {
+    public void getMatchByIdTest() throws Exception {
         matchInit(testMatch);
 
         mvc.perform(MockMvcRequestBuilders.post("/app-api/matches/1/1")
@@ -74,7 +72,7 @@ public class MatchFunctionalTest {
     }
 
     @Test
-    public void deleteMatchWithValidInput() throws Exception {
+    public void deleteMatchWithValidInputTest() throws Exception {
         matchInit(testMatch);
 
         mvc.perform(MockMvcRequestBuilders.post("/app-api/matches/1/1")
