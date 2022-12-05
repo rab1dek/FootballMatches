@@ -19,7 +19,7 @@ public class RefereeUnitTest {
         referee.setLeague("Ekstraklasa");
     }
     @Test
-    void newRef(){
+    void createNewReferee(){
         Referee newRef = new Referee();
         newRef.setRefereeId(1L);
         newRef.setName("Tomasz");

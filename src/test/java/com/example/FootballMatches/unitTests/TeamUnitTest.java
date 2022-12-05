@@ -24,7 +24,7 @@ public class TeamUnitTest {
         team.setFootballers(footballers);
     }
     @Test
-    void newTeam(){
+    void createNewTeam(){
         Team newTeam = new Team();
         newTeam.setTeamId(1L);
         newTeam.setName("Legia Warszawa");

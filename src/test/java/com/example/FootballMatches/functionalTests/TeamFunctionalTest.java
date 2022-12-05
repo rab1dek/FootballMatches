@@ -1,4 +1,4 @@
-package com.example.FootballMatches.Functional;
+package com.example.FootballMatches.functionalTests;
 
 import com.example.FootballMatches.FootballMatchesApplication;
 import org.json.JSONObject;
@@ -55,7 +55,7 @@ public class TeamFunctionalTest {
         team.put("coach", "Marek Papszun");
     }
     @Test
-    public void whenValidInput_thenCreateTeamTest() throws Exception {
+    public void whenValidInput_CreateTeamTest() throws Exception {
         team1Init(team1);
         mvc.perform(post("/app-api/teams").contentType(MediaType.APPLICATION_JSON).content(team1.toString())
                         .contentType(MediaType.APPLICATION_JSON))

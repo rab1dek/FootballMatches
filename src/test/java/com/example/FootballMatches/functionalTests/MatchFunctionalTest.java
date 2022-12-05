@@ -1,4 +1,4 @@
-package com.example.FootballMatches.Functional;
+package com.example.FootballMatches.functionalTests;
 
 import com.example.FootballMatches.FootballMatchesApplication;
 import org.json.JSONObject;

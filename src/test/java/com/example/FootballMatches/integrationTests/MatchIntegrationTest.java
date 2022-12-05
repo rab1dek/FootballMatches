@@ -65,6 +65,7 @@ public class MatchIntegrationTest {
         createReferee(ref);
 
         match.setReferee(ref);
+
         Team team = new Team();
         team.setTeamId(1L);
         team.setName("FC Barcelona");
@@ -73,6 +74,7 @@ public class MatchIntegrationTest {
         List<String> footballers = Arrays.asList("Lewandowski", "Dembele", "Depay");
         team.setFootballers(footballers);
         createTeam(team);
+
         Team team2 = new Team();
         team2.setTeamId(2L);
         team2.setName("Juventus");
@@ -81,12 +83,13 @@ public class MatchIntegrationTest {
         List<String> footballers2 = Arrays.asList("Milik", "Vlahovic", "Szczesny");
         team2.setFootballers(footballers2);
         createTeam(team2);
+
         match.setTeam(team);
         match.setTeam(team2);
         return match;
     }
     @Test
-    public void createMatch() throws Exception {
+    public void createMatchTest() throws Exception {
         Match match = new Match();
         match.setMatchId(1L);
         match.setMatchDate(new Date(2022, 30, 11));
@@ -103,7 +106,7 @@ public class MatchIntegrationTest {
                 .andExpect(jsonPath("$.league", is("LaLiga")));
     }
     @Test
-    public void createMatchWithTeamsAndRefs() throws Exception {
+    public void createMatchWithTeamsAndRefsTest() throws Exception {
         Match match = createMatchForTest();
 
         mvc.perform(MockMvcRequestBuilders.post("/app-api/matches/1/1")
@@ -115,7 +118,7 @@ public class MatchIntegrationTest {
         assertEquals(foundMatches.get(0).getTeam().getName(), "FC Barcelona");
     }
     @Test
-    public void updateMatch() throws Exception {
+    public void updateMatchTest() throws Exception {
         Match match = createMatchForTest();
 
         createMatch(match);

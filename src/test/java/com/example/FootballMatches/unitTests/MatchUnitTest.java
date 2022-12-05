@@ -21,7 +21,7 @@ public class MatchUnitTest {
         match.setMatchTime("20:00");
     }
     @Test
-    public void newMatch(){
+    public void createNewMatch(){
         Match newMatch = new Match();
         newMatch.setLeague("World Cup");
         MatchUtils.validateMatch(newMatch, match);
