@@ -31,7 +31,9 @@ public class TeamUnitTest {
         newTeam.setLeague("Ekstraklasa");
 
         TeamUtils.validateTeam(newTeam, team);
-        assertAll("Test", () -> assertEquals("Legia Warszawa", team.getName()),
-                () -> assertEquals("Ekstraklasa", team.getLeague()));
+        assertAll("Test",
+                () -> assertEquals("Legia Warszawa", team.getName()),
+                () -> assertEquals("Ekstraklasa", team.getLeague())
+        );
     }
 }

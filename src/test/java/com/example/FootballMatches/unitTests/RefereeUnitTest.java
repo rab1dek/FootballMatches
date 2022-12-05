@@ -28,7 +28,10 @@ public class RefereeUnitTest {
 
         RefereeUtils.validateRef(newRef, referee);
 
-        assertAll("Test", () -> assertEquals("Tomasz", referee.getName()),
-                () -> assertEquals("Musial", referee.getSurname()));
+        assertAll("Test",
+                () -> assertEquals("Tomasz", referee.getName()),
+                () -> assertEquals("Musial", referee.getSurname()),
+                () -> assertEquals("Serie A", referee.getLeague())
+        );
     }
 }
