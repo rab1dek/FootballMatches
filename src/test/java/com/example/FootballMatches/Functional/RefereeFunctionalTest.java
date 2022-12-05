@@ -14,7 +14,6 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.io.IOException;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
@@ -62,7 +61,7 @@ public class RefereeFunctionalTest {
 
 
     @Test
-    public void whenValidInput_thenCreateRefereeTest() throws IOException, Exception {
+    public void createRefereeWithValidInputTest() throws Exception {
         referee1Init(referee1);
         mvc.perform(post("/app-api/referees").contentType(MediaType.APPLICATION_JSON).content(referee1.toString())
                         .contentType(MediaType.APPLICATION_JSON))
@@ -76,7 +75,7 @@ public class RefereeFunctionalTest {
     }
 
     @Test
-    public void whenValidInput_thenUpdateRefereeTest() throws IOException, Exception {
+    public void updateRefereeWithValidInputTest() throws Exception {
         referee1Init(referee1);
         refereeUpdate(updatedReferee);
 
@@ -95,7 +94,7 @@ public class RefereeFunctionalTest {
     }
 
     @Test
-    public void whenValidInput_thenDeleteRefereeTest() throws IOException, Exception {
+    public void deleteRefereeWithValidInputTest() throws Exception {
         referee1Init(referee1);
         mvc.perform(post("/app-api/referees").contentType(MediaType.APPLICATION_JSON)
                 .content(referee1.toString()));
@@ -106,7 +105,7 @@ public class RefereeFunctionalTest {
     }
 
     @Test
-    public void givenReferee_whenLoadReferees_thenStatus200() throws Exception {
+    public void postReferees_thenLoadReferees_thenStatus200() throws Exception {
         referee1Init(referee1);
         referee2Init(referee2);
         mvc.perform(post("/app-api/referees").contentType(MediaType.APPLICATION_JSON)
@@ -125,7 +124,7 @@ public class RefereeFunctionalTest {
     }
 
     @Test
-    public void givenReferee_whenLoadRefereeById_thenStatus200() throws Exception {
+    public void postReferee_thenLoadRefereeById_thenStatus200() throws Exception {
         referee1Init(referee1);
         mvc.perform(post("/app-api/referees").contentType(MediaType.APPLICATION_JSON)
                 .content(referee1.toString()));
@@ -139,7 +138,7 @@ public class RefereeFunctionalTest {
     }
 
     @Test
-    public void whenValidInput_thenUpdateRefereeAndReturn() throws Exception {
+    public void updateRefereeAndReturn_withValidInputTest() throws Exception {
         referee1Init(referee1);
         refereeUpdate(updatedReferee);
         mvc.perform(post("/app-api/referees").contentType(MediaType.APPLICATION_JSON)
