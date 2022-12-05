@@ -103,7 +103,8 @@ public class MatchIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(content()
                         .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.league", is("LaLiga")));
+                .andExpect(jsonPath("$.league", is("LaLiga")))
+                .andExpect(jsonPath("$.matchTime", is("20:00")));
     }
     @Test
     public void createMatchWithTeamsAndRefsTest() throws Exception {
@@ -113,6 +114,7 @@ public class MatchIntegrationTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(match)));
         List<Match> foundMatches = matchRepository.findAll();
+
         assertEquals(foundMatches.get(0).getLeague(), "Friendly");
         assertEquals(foundMatches.get(0).getReferee().getName(), "Javier");
         assertEquals(foundMatches.get(0).getTeam().getName(), "FC Barcelona");
@@ -120,9 +122,7 @@ public class MatchIntegrationTest {
     @Test
     public void updateMatchTest() throws Exception {
         Match match = createMatchForTest();
-
         createMatch(match);
-
         match.setLeague("Friendly");
 
         mvc.perform(MockMvcRequestBuilders.put("/app-api/matches/1/1")
@@ -130,13 +130,11 @@ public class MatchIntegrationTest {
                 .content(objectMapper.writeValueAsString(match)));
 
         List<Match> foundMatches = matchRepository.findAll();
-
         assertEquals(foundMatches.get(0).getLeague(), "Friendly");
     }
     @Test
     public void deleteMatch() throws Exception {
         Match match = createMatchForTest();
-
         createMatch(match);
 
         mvc.perform(MockMvcRequestBuilders.delete("/app-api/matches/1")
