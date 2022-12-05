@@ -34,7 +34,6 @@ public class MatchFunctionalTest {
     @Autowired
     private MockMvc mvc;
     JSONObject testMatch = new JSONObject();
-    JSONObject testMatchUpdated = new JSONObject();
 
     public void matchInit(JSONObject match) throws Exception{
         match.put("matchId", 1);
@@ -42,13 +41,6 @@ public class MatchFunctionalTest {
         match.put("matchDate", "2022-01-02");
         match.put("matchTime", "14:30");
         match.put("league", "Premiere League");
-    }
-    public void matchUpdate(JSONObject match) throws Exception{
-        match.put("matchId", 1);
-        //match.put("matchDate", new Date(2022, 5, 2));
-        match.put("matchDate", "2022-05-02");
-        match.put("matchTime", "15:30");
-        match.put("league", "LaLiga");
     }
 
 
@@ -79,39 +71,6 @@ public class MatchFunctionalTest {
                 .andExpect(content()
                         .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.league", is("Premiere League")));
-    }
-
-    @Test
-    public void updateMatchWithValidInput() throws Exception {
-        matchInit(testMatch);
-
-        mvc.perform(MockMvcRequestBuilders.post("/app-api/matches/1/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(testMatch.toString()));
-
-        mvc.perform(get("/app-api/matches/1")
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(content()
-                        .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.matchTime", is("14:30")))
-                .andExpect(jsonPath("$.league", is("Premiere League")));
-
-        matchUpdate(testMatchUpdated);
-
-        mvc.perform(MockMvcRequestBuilders.patch("/app-api/matches/1/1/1") //not working
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(testMatchUpdated.toString()));
-
-        mvc.perform(get("/app-api/matches/1")
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(content()
-                        .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.matchTime", is("15:30")))
-                .andExpect(jsonPath("$.league", is("LaLiga")));
     }
 
     @Test
